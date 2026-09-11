@@ -1,0 +1,3523 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ImpactBridge | Societal Innovation Platform</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+:root {
+    --bg: #07111f;
+    --bg-2: #0b1728;
+    --card: rgba(16, 31, 52, 0.78);
+    --card-solid: #0f1d31;
+
+    --primary: #4f8cff;
+    --primary-dark: #3676eb;
+    --purple: #8b5cf6;
+    --cyan: #22d3ee;
+    --green: #22c55e;
+    --orange: #f59e0b;
+    --red: #ef4444;
+
+    --text: #f8fafc;
+    --text-soft: #cbd5e1;
+    --muted: #8291a8;
+
+    --border: rgba(148, 163, 184, 0.15);
+
+    --shadow:
+        0 20px 60px rgba(0,0,0,0.25);
+
+    --radius: 18px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at 10% 5%, rgba(79,140,255,0.12), transparent 30%),
+        radial-gradient(circle at 90% 15%, rgba(139,92,246,0.12), transparent 28%),
+        var(--bg);
+
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+
+    background-size: 50px 50px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 80%
+    );
+
+    z-index: -1;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: rgba(7,17,31,0.78);
+
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid var(--border);
+}
+
+.navbar {
+    max-width: 1250px;
+    margin: auto;
+
+    padding: 15px 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+.logo-icon {
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(135deg,
+        var(--primary),
+        var(--purple));
+
+    box-shadow:
+        0 8px 25px rgba(79,140,255,0.3);
+}
+
+.logo span {
+    color: var(--primary);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--text-soft);
+
+    font-size: 0.86rem;
+    font-weight: 600;
+
+    transition: 0.25s;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+.nav-btn {
+    padding: 10px 17px;
+
+    border: 0;
+    border-radius: 9px;
+
+    color: white;
+
+    background:
+        linear-gradient(135deg,
+        var(--primary),
+        #6366f1);
+
+    font-weight: 700;
+
+    box-shadow:
+        0 8px 25px rgba(79,140,255,0.22);
+
+    transition: 0.25s;
+}
+
+.nav-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 30px rgba(79,140,255,0.35);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    max-width: 1250px;
+
+    margin: auto;
+
+    padding: 95px 25px 80px;
+
+    position: relative;
+}
+
+.hero-grid {
+    display: grid;
+
+    grid-template-columns: 1.15fr 0.85fr;
+
+    align-items: center;
+
+    gap: 70px;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 7px 13px;
+
+    border: 1px solid rgba(79,140,255,0.25);
+
+    background: rgba(79,140,255,0.08);
+
+    color: #8bb5ff;
+
+    border-radius: 100px;
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    margin-bottom: 20px;
+}
+
+.live-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    box-shadow:
+        0 0 0 5px rgba(34,197,94,0.1);
+}
+
+.hero h1 {
+    font-family: "Manrope", sans-serif;
+
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+
+    line-height: 1.06;
+
+    letter-spacing: -2.5px;
+
+    margin-bottom: 22px;
+}
+
+.gradient-text {
+    background:
+        linear-gradient(
+            90deg,
+            #60a5fa,
+            #8b5cf6,
+            #22d3ee
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+.hero-description {
+    max-width: 680px;
+
+    color: var(--muted);
+
+    font-size: 1.02rem;
+
+    margin-bottom: 30px;
+}
+
+.hero-actions {
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+}
+
+.btn {
+    border: 0;
+
+    border-radius: 10px;
+
+    padding: 12px 19px;
+
+    font-size: 0.84rem;
+
+    font-weight: 700;
+
+    transition: 0.25s;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+}
+
+.btn-primary {
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #6366f1
+        );
+
+    box-shadow:
+        0 10px 30px rgba(79,140,255,0.22);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 14px 35px rgba(79,140,255,0.35);
+}
+
+.btn-outline {
+    color: var(--text-soft);
+
+    background: rgba(255,255,255,0.035);
+
+    border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+    color: white;
+
+    background: rgba(255,255,255,0.07);
+
+    border-color: rgba(148,163,184,0.3);
+}
+
+
+/* =========================================================
+   HERO VISUAL
+========================================================= */
+
+.hero-visual {
+    position: relative;
+}
+
+.hero-panel {
+    position: relative;
+
+    padding: 25px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20,39,66,0.95),
+            rgba(9,23,40,0.88)
+        );
+
+    border: 1px solid rgba(148,163,184,0.16);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.35);
+
+    overflow: hidden;
+}
+
+.hero-panel::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    right: -70px;
+    top: -70px;
+
+    border-radius: 50%;
+
+    background: rgba(79,140,255,0.12);
+
+    filter: blur(10px);
+}
+
+.panel-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 22px;
+}
+
+.panel-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.panel-live {
+    padding: 5px 9px;
+
+    border-radius: 100px;
+
+    background: rgba(34,197,94,0.1);
+
+    color: #4ade80;
+
+    font-size: 0.66rem;
+
+    font-weight: 700;
+}
+
+.pipeline-item {
+    position: relative;
+
+    padding: 15px;
+
+    margin-bottom: 11px;
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,0.035);
+
+    border: 1px solid var(--border);
+}
+
+.pipeline-label {
+    color: var(--muted);
+
+    font-size: 0.62rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+}
+
+.pipeline-title {
+    margin-top: 4px;
+
+    color: var(--text-soft);
+
+    font-size: 0.78rem;
+
+    font-weight: 600;
+}
+
+.pipeline-arrow {
+    text-align: center;
+
+    color: var(--primary);
+
+    font-size: 1.1rem;
+
+    margin: -4px 0;
+}
+
+.panel-footer {
+    margin-top: 18px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: var(--muted);
+
+    font-size: 0.68rem;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+
+    background:
+        rgba(10,24,42,0.65);
+
+    backdrop-filter: blur(10px);
+}
+
+.stats-container {
+    max-width: 1250px;
+
+    margin: auto;
+
+    padding: 28px 25px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+.stat {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 9px;
+}
+
+.stat-icon {
+    width: 43px;
+    height: 43px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 11px;
+
+    background:
+        rgba(79,140,255,0.1);
+
+    border:
+        1px solid rgba(79,140,255,0.12);
+}
+
+.stat-number {
+    color: white;
+
+    font-size: 1.45rem;
+
+    font-weight: 800;
+}
+
+.stat-label {
+    color: var(--muted);
+
+    font-size: 0.68rem;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.container {
+    max-width: 1250px;
+
+    margin: auto;
+
+    padding: 80px 25px;
+}
+
+.section-heading {
+    margin-bottom: 28px;
+}
+
+.eyebrow {
+    color: #70a7ff;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.3px;
+
+    font-size: 0.68rem;
+
+    font-weight: 800;
+
+    margin-bottom: 7px;
+}
+
+.section-title {
+    font-family: "Manrope", sans-serif;
+
+    font-size: 2rem;
+
+    letter-spacing: -1px;
+}
+
+.section-subtitle {
+    color: var(--muted);
+
+    margin-top: 7px;
+
+    font-size: 0.84rem;
+}
+
+
+/* =========================================================
+   SEARCH + FILTER
+========================================================= */
+
+.tools {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px;
+
+    margin-bottom: 25px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(15,30,51,0.75);
+
+    border:
+        1px solid var(--border);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.12);
+}
+
+.search-box {
+    flex: 1;
+
+    position: relative;
+}
+
+.search-box span {
+    position: absolute;
+
+    left: 13px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: var(--muted);
+}
+
+.search-box input {
+    width: 100%;
+
+    padding: 11px 14px 11px 38px;
+
+    border-radius: 9px;
+
+    border:
+        1px solid var(--border);
+
+    outline: none;
+
+    color: white;
+
+    background:
+        rgba(255,255,255,0.035);
+
+    font-size: 0.78rem;
+}
+
+.search-box input::placeholder {
+    color: #65758c;
+}
+
+.search-box input:focus {
+    border-color: rgba(79,140,255,0.5);
+
+    box-shadow:
+        0 0 0 3px rgba(79,140,255,0.08);
+}
+
+.filter-group {
+    display: flex;
+
+    gap: 6px;
+
+    overflow-x: auto;
+}
+
+.filter-btn {
+    white-space: nowrap;
+
+    padding: 9px 12px;
+
+    border-radius: 8px;
+
+    border: 1px solid var(--border);
+
+    color: var(--muted);
+
+    background: transparent;
+
+    font-size: 0.7rem;
+
+    font-weight: 700;
+
+    transition: 0.2s;
+}
+
+.filter-btn:hover {
+    color: white;
+
+    background: rgba(255,255,255,0.05);
+}
+
+.filter-btn.active {
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #6366f1
+        );
+
+    border-color: transparent;
+}
+
+
+/* =========================================================
+   CHALLENGE CARDS
+========================================================= */
+
+.challenge-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(350px, 1fr));
+
+    gap: 18px;
+}
+
+.challenge-card {
+    padding: 21px;
+
+    border-radius: var(--radius);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17,34,57,0.92),
+            rgba(10,23,40,0.88)
+        );
+
+    border:
+        1px solid var(--border);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.14);
+
+    transition:
+        0.3s ease;
+
+    display: flex;
+
+    flex-direction: column;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.challenge-card::before {
+    content: "";
+
+    position: absolute;
+
+    height: 2px;
+
+    width: 0;
+
+    left: 0;
+    top: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            var(--purple),
+            var(--cyan)
+        );
+
+    transition: 0.35s;
+}
+
+.challenge-card:hover {
+    transform: translateY(-5px);
+
+    border-color:
+        rgba(79,140,255,0.25);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.25);
+}
+
+.challenge-card:hover::before {
+    width: 100%;
+}
+
+.card-top {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+}
+
+.category {
+    padding: 5px 9px;
+
+    border-radius: 6px;
+
+    color: #8bb5ff;
+
+    background:
+        rgba(79,140,255,0.1);
+
+    border:
+        1px solid rgba(79,140,255,0.12);
+
+    font-size: 0.63rem;
+
+    font-weight: 800;
+}
+
+.priority {
+    padding: 5px 8px;
+
+    border-radius: 6px;
+
+    font-size: 0.62rem;
+
+    font-weight: 700;
+}
+
+.priority-high {
+    color: #fca5a5;
+
+    background:
+        rgba(239,68,68,0.09);
+
+    border:
+        1px solid rgba(239,68,68,0.12);
+}
+
+.priority-medium {
+    color: #fcd34d;
+
+    background:
+        rgba(245,158,11,0.09);
+
+    border:
+        1px solid rgba(245,158,11,0.12);
+}
+
+.card-title {
+    color: white;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 1rem;
+
+    line-height: 1.4;
+
+    margin-bottom: 9px;
+}
+
+.card-description {
+    color: var(--muted);
+
+    font-size: 0.76rem;
+
+    line-height: 1.65;
+
+    margin-bottom: 18px;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 3;
+
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+.card-info {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 9px;
+
+    margin-bottom: 18px;
+}
+
+.info-item {
+    padding: 9px;
+
+    border-radius: 8px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    border:
+        1px solid rgba(148,163,184,0.08);
+}
+
+.info-item small {
+    display: block;
+
+    color: #60728a;
+
+    font-size: 0.58rem;
+
+    margin-bottom: 2px;
+}
+
+.info-item strong {
+    color: var(--text-soft);
+
+    font-size: 0.67rem;
+}
+
+.card-footer {
+    margin-top: auto;
+
+    padding-top: 14px;
+
+    border-top:
+        1px solid var(--border);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+.organization {
+    color: #60728a;
+
+    font-size: 0.62rem;
+}
+
+.organization strong {
+    display: block;
+
+    color: var(--text-soft);
+
+    font-size: 0.7rem;
+
+    margin-top: 2px;
+}
+
+.card-buttons {
+    display: flex;
+
+    gap: 6px;
+}
+
+.small-btn {
+    padding: 8px 10px;
+
+    border-radius: 7px;
+
+    font-size: 0.64rem;
+}
+
+
+/* =========================================================
+   HOW IT WORKS
+========================================================= */
+
+.how-section {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(12,28,48,0.7),
+            rgba(7,17,31,0.7)
+        );
+}
+
+.steps {
+    max-width: 1250px;
+
+    margin: auto;
+
+    padding: 75px 25px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+.step {
+    padding: 24px;
+
+    border-radius: 15px;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        rgba(255,255,255,0.025);
+
+    transition: 0.25s;
+}
+
+.step:hover {
+    transform: translateY(-4px);
+
+    background:
+        rgba(255,255,255,0.04);
+
+    border-color:
+        rgba(79,140,255,0.2);
+}
+
+.step-number {
+    width: 36px;
+    height: 36px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--purple)
+        );
+
+    color: white;
+
+    font-size: 0.68rem;
+
+    font-weight: 800;
+
+    margin-bottom: 17px;
+}
+
+.step h3 {
+    font-size: 0.9rem;
+
+    margin-bottom: 7px;
+}
+
+.step p {
+    color: var(--muted);
+
+    font-size: 0.72rem;
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.cta {
+    max-width: 1150px;
+
+    margin: 75px auto;
+
+    padding: 65px 30px;
+
+    border-radius: 24px;
+
+    text-align: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(79,140,255,0.2);
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(79,140,255,0.2),
+            transparent 45%
+        ),
+        linear-gradient(
+            135deg,
+            #0e2038,
+            #111b36
+        );
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,0.25);
+}
+
+.cta h2 {
+    font-family: "Manrope", sans-serif;
+
+    font-size: 2rem;
+
+    margin-bottom: 9px;
+}
+
+.cta p {
+    max-width: 650px;
+
+    margin: auto;
+
+    color: var(--muted);
+
+    font-size: 0.82rem;
+
+    margin-bottom: 24px;
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+.modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(2,8,23,0.78);
+
+    backdrop-filter: blur(8px);
+
+    z-index: 3000;
+}
+
+.modal-overlay.show {
+    display: flex;
+}
+
+.modal {
+    width: 100%;
+
+    max-width: 580px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 27px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #102039,
+            #0b1729
+        );
+
+    border:
+        1px solid var(--border);
+
+    box-shadow:
+        0 30px 90px rgba(0,0,0,0.5);
+
+    animation:
+        modalIn 0.2s ease;
+}
+
+@keyframes modalIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+.modal-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    margin-bottom: 23px;
+}
+
+.modal-header h3 {
+    font-family: "Manrope", sans-serif;
+
+    font-size: 1.2rem;
+}
+
+.modal-header p {
+    color: var(--muted);
+
+    font-size: 0.7rem;
+
+    margin-top: 4px;
+}
+
+.close-btn {
+    width: 32px;
+    height: 32px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    color: var(--muted);
+
+    background:
+        rgba(255,255,255,0.035);
+
+    font-size: 1.2rem;
+}
+
+.close-btn:hover {
+    color: white;
+
+    background:
+        rgba(255,255,255,0.08);
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+
+    color: var(--text-soft);
+
+    font-size: 0.7rem;
+
+    font-weight: 700;
+
+    margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+
+    padding: 11px 12px;
+
+    color: white;
+
+    background:
+        rgba(255,255,255,0.035);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 8px;
+
+    outline: none;
+
+    font-size: 0.75rem;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #596b82;
+}
+
+.form-group select option {
+    color: #111827;
+
+    background: white;
+}
+
+.form-group textarea {
+    min-height: 105px;
+
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color:
+        rgba(79,140,255,0.55);
+
+    box-shadow:
+        0 0 0 3px rgba(79,140,255,0.08);
+}
+
+.form-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+}
+
+
+/* =========================================================
+   DETAILS
+========================================================= */
+
+.detail-description {
+    color: var(--muted);
+
+    font-size: 0.8rem;
+
+    line-height: 1.7;
+}
+
+.detail-box {
+    margin-top: 18px;
+
+    padding: 14px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    border:
+        1px solid var(--border);
+}
+
+.detail-box h4 {
+    font-size: 0.7rem;
+
+    margin-bottom: 4px;
+}
+
+.detail-box p {
+    color: var(--muted);
+
+    font-size: 0.74rem;
+}
+
+.detail-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 8px;
+
+    margin-top: 17px;
+}
+
+.detail-stat {
+    text-align: center;
+
+    padding: 12px 8px;
+
+    border-radius: 9px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    border:
+        1px solid var(--border);
+}
+
+.detail-stat strong {
+    display: block;
+
+    color: white;
+
+    font-size: 0.9rem;
+}
+
+.detail-stat span {
+    color: var(--muted);
+
+    font-size: 0.58rem;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast {
+    position: fixed;
+
+    right: 22px;
+    bottom: 22px;
+
+    padding: 13px 17px;
+
+    border-radius: 10px;
+
+    color: white;
+
+    background:
+        #111f34;
+
+    border:
+        1px solid var(--border);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.35);
+
+    font-size: 0.72rem;
+
+    font-weight: 600;
+
+    transform: translateY(100px);
+
+    opacity: 0;
+
+    transition: 0.3s;
+
+    z-index: 5000;
+}
+
+.toast.show {
+    transform: translateY(0);
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty {
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    padding: 65px 20px;
+
+    border-radius: 15px;
+
+    border:
+        1px dashed var(--border);
+
+    background:
+        rgba(255,255,255,0.02);
+}
+
+.empty h3 {
+    margin-bottom: 5px;
+}
+
+.empty p {
+    color: var(--muted);
+
+    font-size: 0.75rem;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    border-top: 1px solid var(--border);
+
+    background:
+        #050c16;
+
+    padding: 42px 25px;
+}
+
+.footer-container {
+    max-width: 1250px;
+
+    margin: auto;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+.footer-brand {
+    font-family: "Manrope", sans-serif;
+
+    font-weight: 800;
+
+    margin-bottom: 4px;
+}
+
+.footer-text,
+.footer-right {
+    color: #52647c;
+
+    font-size: 0.66rem;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width: 950px) {
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+    }
+
+    .hero-visual {
+        max-width: 650px;
+    }
+
+    .stats-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .steps {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+}
+
+@media(max-width: 650px) {
+
+    .navbar {
+        padding: 12px 16px;
+    }
+
+    .nav-btn {
+        padding: 9px 12px;
+
+        font-size: 0.68rem;
+    }
+
+    .hero {
+        padding:
+            60px 17px 55px;
+    }
+
+    .hero h1 {
+        font-size: 2.55rem;
+
+        letter-spacing: -1.6px;
+    }
+
+    .hero-description {
+        font-size: 0.86rem;
+    }
+
+    .container {
+        padding:
+            55px 17px;
+    }
+
+    .tools {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .filter-group {
+        padding-bottom: 3px;
+    }
+
+    .challenge-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-container {
+        padding: 22px 17px;
+    }
+
+    .stat-number {
+        font-size: 1.2rem;
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+
+        padding:
+            55px 17px;
+    }
+
+    .cta {
+        margin:
+            40px 17px;
+
+        padding:
+            45px 20px;
+    }
+
+    .cta h2 {
+        font-size: 1.6rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-container {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
+<header>
+
+    <nav class="navbar">
+
+        <a href="#" class="logo">
+
+            <div class="logo-icon">
+                ⚡
+            </div>
+
+            Impact<span>Bridge</span>
+
+        </a>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="#challenges">
+                    Browse Challenges
+                </a>
+            </li>
+
+            <li>
+                <a href="#how-it-works">
+                    How It Works
+                </a>
+            </li>
+
+            <li>
+                <a href="#impact">
+                    Impact
+                </a>
+            </li>
+
+        </ul>
+
+
+        <button
+            class="nav-btn"
+            onclick="openModal('postModal')">
+
+            + Post a Challenge
+
+        </button>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+    <div class="hero-grid">
+
+
+        <div>
+
+            <div class="hero-badge">
+
+                <span class="live-dot"></span>
+
+                CROWDSOURCED INNOVATION NETWORK
+
+            </div>
+
+
+            <h1>
+
+                Connecting
+
+                <span class="gradient-text">
+                    Societal Problems
+                </span>
+
+                With Real Solutions.
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                ImpactBridge is a digital platform connecting
+                communities, universities, research labs and
+                industry leaders to identify, solve and deploy
+                solutions for real-world societal challenges.
+
+            </p>
+
+
+            <div class="hero-actions">
+
+                <a
+                    href="#challenges"
+                    class="btn btn-primary">
+
+                    Explore Problems →
+
+                </a>
+
+
+                <button
+                    class="btn btn-outline"
+                    onclick="openModal('postModal')">
+
+                    Submit Problem
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- HERO VISUAL -->
+
+        <div class="hero-visual">
+
+            <div class="hero-panel">
+
+                <div class="panel-header">
+
+                    <span class="panel-title">
+                        Innovation Pipeline
+                    </span>
+
+                    <span class="panel-live">
+                        ● ACTIVE
+                    </span>
+
+                </div>
+
+
+                <div class="pipeline-item">
+
+                    <div class="pipeline-label">
+                        COMMUNITY NEED
+                    </div>
+
+                    <div class="pipeline-title">
+                        Rural drinking water contamination
+                    </div>
+
+                </div>
+
+
+                <div class="pipeline-arrow">
+                    ↓
+                </div>
+
+
+                <div class="pipeline-item">
+
+                    <div class="pipeline-label">
+                        UNIVERSITY / RESEARCH
+                    </div>
+
+                    <div class="pipeline-title">
+                        Low-cost purification prototype
+                    </div>
+
+                </div>
+
+
+                <div class="pipeline-arrow">
+                    ↓
+                </div>
+
+
+                <div class="pipeline-item">
+
+                    <div class="pipeline-label">
+                        INDUSTRY PARTNERSHIP
+                    </div>
+
+                    <div class="pipeline-title">
+                        Manufacturing and deployment support
+                    </div>
+
+                </div>
+
+
+                <div class="panel-footer">
+
+                    <span>
+                        Problem
+                    </span>
+
+                    <span>
+                        Research
+                    </span>
+
+                    <span>
+                        Funding
+                    </span>
+
+                    <span>
+                        Impact
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     STATS
+========================================================= -->
+
+<section
+    class="stats"
+    id="impact">
+
+    <div class="stats-container">
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                🎯
+            </div>
+
+            <div>
+
+                <div
+                    class="stat-number"
+                    id="challenge-count">
+
+                    142
+
+                </div>
+
+                <div class="stat-label">
+                    Societal Challenges
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                🎓
+            </div>
+
+            <div>
+
+                <div class="stat-number">
+                    48
+                </div>
+
+                <div class="stat-label">
+                    University Research Labs
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                🏢
+            </div>
+
+            <div>
+
+                <div class="stat-number">
+                    35
+                </div>
+
+                <div class="stat-label">
+                    Industry Sponsors
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                🚀
+            </div>
+
+            <div>
+
+                <div class="stat-number">
+                    76
+                </div>
+
+                <div class="stat-label">
+                    Solutions in Progress
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CHALLENGES
+========================================================= -->
+
+<main
+    class="container"
+    id="challenges">
+
+
+    <div class="section-heading">
+
+        <div class="eyebrow">
+            Problem Repository
+        </div>
+
+        <h2 class="section-title">
+            Active Societal Challenges
+        </h2>
+
+        <p class="section-subtitle">
+
+            Discover real-world problems and connect
+            with organizations looking for innovative solutions.
+
+        </p>
+
+    </div>
+
+
+
+    <!-- SEARCH + FILTER -->
+
+    <div class="tools">
+
+
+        <div class="search-box">
+
+            <span>
+                🔎
+            </span>
+
+            <input
+                id="searchInput"
+                type="text"
+                placeholder="Search challenges, categories or organizations..."
+                oninput="renderChallenges()">
+
+        </div>
+
+
+        <div class="filter-group">
+
+            <button
+                class="filter-btn active"
+                onclick="filterCategory('All', this)">
+
+                All
+
+            </button>
+
+
+            <button
+                class="filter-btn"
+                onclick="filterCategory('Clean Energy', this)">
+
+                Clean Energy
+
+            </button>
+
+
+            <button
+                class="filter-btn"
+                onclick="filterCategory('Healthcare', this)">
+
+                Healthcare
+
+            </button>
+
+
+            <button
+                class="filter-btn"
+                onclick="filterCategory('AgriTech', this)">
+
+                AgriTech
+
+            </button>
+
+
+            <button
+                class="filter-btn"
+                onclick="filterCategory('Urban Planning', this)">
+
+                Urban Planning
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- CHALLENGE CARDS -->
+
+    <div
+        class="challenge-grid"
+        id="challenge-list">
+
+    </div>
+
+</main>
+
+
+
+<!-- =========================================================
+     HOW IT WORKS
+========================================================= -->
+
+<section
+    class="how-section"
+    id="how-it-works">
+
+    <div class="steps">
+
+
+        <div class="step">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <h3>
+                Identify the Problem
+            </h3>
+
+            <p>
+
+                Communities, NGOs, government bodies and
+                organizations submit real societal challenges.
+
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                02
+            </div>
+
+            <h3>
+                Connect Experts
+            </h3>
+
+            <p>
+
+                Universities, students and research labs
+                discover challenges matching their expertise.
+
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                03
+            </div>
+
+            <h3>
+                Collaborate
+            </h3>
+
+            <p>
+
+                Researchers and industry partners propose
+                technologies, prototypes and funding.
+
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                04
+            </div>
+
+            <h3>
+                Create Impact
+            </h3>
+
+            <p>
+
+                Successful solutions can be tested,
+                deployed and scaled within communities.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CTA
+========================================================= -->
+
+<section class="cta">
+
+    <h2>
+        Have a Problem Worth Solving?
+    </h2>
+
+    <p>
+
+        Submit a real-world challenge and connect with
+        students, researchers, universities and industry
+        partners who can help create a solution.
+
+    </p>
+
+
+    <button
+        class="btn btn-primary"
+        onclick="openModal('postModal')">
+
+        Submit a Challenge →
+
+    </button>
+
+</section>
+
+
+
+<!-- =========================================================
+     POST CHALLENGE MODAL
+========================================================= -->
+
+<div
+    class="modal-overlay"
+    id="postModal">
+
+
+    <div class="modal">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <h3>
+                    Post a Societal Challenge
+                </h3>
+
+                <p>
+                    Share a real-world problem with the network.
+                </p>
+
+            </div>
+
+
+            <button
+                class="close-btn"
+                onclick="closeModal('postModal')">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+
+        <form
+            id="challengeForm"
+            onsubmit="handlePostChallenge(event)">
+
+
+            <div class="form-group">
+
+                <label>
+                    Problem Title
+                </label>
+
+                <input
+                    id="title"
+                    required
+                    placeholder="e.g. Low-cost water purification for rural areas">
+
+            </div>
+
+
+            <div class="form-row">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Category
+                    </label>
+
+                    <select id="category">
+
+                        <option>
+                            Clean Energy
+                        </option>
+
+                        <option>
+                            Healthcare
+                        </option>
+
+                        <option>
+                            AgriTech
+                        </option>
+
+                        <option>
+                            Urban Planning
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Priority
+                    </label>
+
+                    <select id="priority">
+
+                        <option>
+                            High
+                        </option>
+
+                        <option selected>
+                            Medium
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Organization / Submitter
+                    </label>
+
+                    <input
+                        id="org"
+                        required
+                        placeholder="NGO / Civic Council / Institution">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Location
+                    </label>
+
+                    <input
+                        id="location"
+                        required
+                        placeholder="District / State">
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Description & Requirements
+                </label>
+
+                <textarea
+                    id="desc"
+                    required
+                    placeholder="Describe the problem, affected people and required technical support..."></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Expected Impact
+                </label>
+
+                <input
+                    id="impact"
+                    placeholder="e.g. Benefit 5,000 rural residents">
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                type="submit"
+                style="width:100%">
+
+                Publish Challenge
+
+            </button>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     SOLUTION MODAL
+========================================================= -->
+
+<div
+    class="modal-overlay"
+    id="solveModal">
+
+
+    <div class="modal">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <h3>
+                    Propose a Solution
+                </h3>
+
+                <p>
+                    Express your interest in solving this challenge.
+                </p>
+
+            </div>
+
+
+            <button
+                class="close-btn"
+                onclick="closeModal('solveModal')">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <form
+            onsubmit="handleSolveSubmit(event)">
+
+
+            <div class="form-group">
+
+                <label>
+                    Institution Type
+                </label>
+
+                <select required>
+
+                    <option>
+                        University / Research Lab
+                    </option>
+
+                    <option>
+                        Industry Partner / Corporate R&D
+                    </option>
+
+                    <option>
+                        Student Innovation Team
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Institution Name
+                </label>
+
+                <input
+                    required
+                    placeholder="e.g. National Institute of Technology">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Proposal Summary
+                </label>
+
+                <textarea
+                    required
+                    placeholder="Describe your technical capability or proposed solution..."></textarea>
+
+            </div>
+
+
+            <div class="form-row">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Estimated Timeline
+                    </label>
+
+                    <select>
+
+                        <option>
+                            1–3 Months
+                        </option>
+
+                        <option>
+                            3–6 Months
+                        </option>
+
+                        <option>
+                            6–12 Months
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Funding / Grant
+                    </label>
+
+                    <input
+                        placeholder="₹ Amount">
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                type="submit"
+                style="width:100%">
+
+                Express Interest
+
+            </button>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     DETAILS MODAL
+========================================================= -->
+
+<div
+    class="modal-overlay"
+    id="detailsModal">
+
+
+    <div class="modal">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <h3 id="detailTitle">
+                    Challenge
+                </h3>
+
+                <p id="detailCategory">
+                    Category
+                </p>
+
+            </div>
+
+
+            <button
+                class="close-btn"
+                onclick="closeModal('detailsModal')">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="detail-box">
+
+            <h4>
+                Problem Statement
+            </h4>
+
+            <p
+                id="detailDescription">
+            </p>
+
+        </div>
+
+
+        <div class="detail-box">
+
+            <h4>
+                Submitted By
+            </h4>
+
+            <p
+                id="detailOrg">
+            </p>
+
+        </div>
+
+
+        <div class="detail-box">
+
+            <h4>
+                Location
+            </h4>
+
+            <p
+                id="detailLocation">
+            </p>
+
+        </div>
+
+
+        <div class="detail-box">
+
+            <h4>
+                Expected Impact
+            </h4>
+
+            <p
+                id="detailImpact">
+            </p>
+
+        </div>
+
+
+        <div class="detail-stats">
+
+            <div class="detail-stat">
+
+                <strong
+                    id="detailPartners">
+                    0
+                </strong>
+
+                <span>
+                    Proposals
+                </span>
+
+            </div>
+
+
+            <div class="detail-stat">
+
+                <strong
+                    id="detailPriority">
+                    High
+                </strong>
+
+                <span>
+                    Priority
+                </span>
+
+            </div>
+
+
+            <div class="detail-stat">
+
+                <strong>
+                    Active
+                </strong>
+
+                <span>
+                    Status
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="btn btn-primary"
+            onclick="collaborateFromDetails()"
+            style="width:100%; margin-top:18px">
+
+            Propose a Solution →
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div
+    class="toast"
+    id="toast">
+
+    Challenge submitted successfully.
+
+</div>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="footer-container">
+
+
+        <div>
+
+            <div class="footer-brand">
+                ImpactBridge
+            </div>
+
+            <div class="footer-text">
+
+                Crowdsourced Societal Innovation &
+                Academia-Industry Collaboration Platform.
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-right">
+
+            © 2026 ImpactBridge · SIH Prototype
+
+        </div>
+
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+
+/* =========================================================
+   SAMPLE CHALLENGES
+========================================================= */
+
+const challenges = [
+
+    {
+        id: 1,
+
+        title:
+        "Cold-Chain Monitoring for Rural Vaccine Distribution",
+
+        category:
+        "Healthcare",
+
+        priority:
+        "High",
+
+        desc:
+        "Need low-cost, battery-free temperature loggers to ensure vaccines remain safe during the final stage of rural transportation.",
+
+        org:
+        "Public Health Collective",
+
+        location:
+        "Rural India",
+
+        impact:
+        "Improve vaccine safety for thousands of rural patients.",
+
+        partners:
+        2
+    },
+
+
+    {
+        id: 2,
+
+        title:
+        "Paddy Straw Bio-Degradation to Mitigate Stubble Burning",
+
+        category:
+        "Clean Energy",
+
+        priority:
+        "High",
+
+        desc:
+        "Seeking fast-acting microbial solutions or compact mechanical shredders capable of decomposing post-harvest residue.",
+
+        org:
+        "North Farmers Alliance",
+
+        location:
+        "Punjab, India",
+
+        impact:
+        "Reduce agricultural pollution and improve soil health.",
+
+        partners:
+        4
+    },
+
+
+    {
+        id: 3,
+
+        title:
+        "Solar-Powered Groundwater Arsenic Filtration",
+
+        category:
+        "Clean Energy",
+
+        priority:
+        "High",
+
+        desc:
+        "Targeting decentralized adsorption systems that operate completely off-grid with long maintenance cycles.",
+
+        org:
+        "Clean Water Initiative",
+
+        location:
+        "West Bengal, India",
+
+        impact:
+        "Provide safer drinking water to rural communities.",
+
+        partners:
+        1
+    },
+
+
+    {
+        id: 4,
+
+        title:
+        "AI Optimization for Municipal Micro-Transit Routing",
+
+        category:
+        "Urban Planning",
+
+        priority:
+        "Medium",
+
+        desc:
+        "Developing algorithmic route adaptation for shared electric auto-rickshaws to reduce waiting times in low-income towns.",
+
+        org:
+        "City Transit Department",
+
+        location:
+        "Kolkata, India",
+
+        impact:
+        "Reduce transportation waiting time and improve mobility.",
+
+        partners:
+        3
+    },
+
+
+    {
+        id: 5,
+
+        title:
+        "Early Detection of Citrus Greening via Drone Imaging",
+
+        category:
+        "AgriTech",
+
+        priority:
+        "High",
+
+        desc:
+        "Looking for multi-spectral drone analysis algorithms to diagnose bacterial disease before symptoms become visible.",
+
+        org:
+        "Horticulture Board",
+
+        location:
+        "West Bengal, India",
+
+        impact:
+        "Reduce crop losses for smallholder farmers.",
+
+        partners:
+        2
+    }
+
+];
+
+
+let currentFilter = "All";
+
+let selectedChallenge = null;
+
+
+
+/* =========================================================
+   RENDER CHALLENGES
+========================================================= */
+
+function renderChallenges() {
+
+    const container =
+        document.getElementById("challenge-list");
+
+    const search =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+
+    const filtered =
+        challenges.filter(challenge => {
+
+            const categoryMatch =
+                currentFilter === "All" ||
+                challenge.category === currentFilter;
+
+
+            const searchMatch =
+                challenge.title
+                .toLowerCase()
+                .includes(search)
+
+                ||
+
+                challenge.category
+                .toLowerCase()
+                .includes(search)
+
+                ||
+
+                challenge.org
+                .toLowerCase()
+                .includes(search)
+
+                ||
+
+                challenge.location
+                .toLowerCase()
+                .includes(search);
+
+
+            return categoryMatch && searchMatch;
+
+        });
+
+
+    container.innerHTML = "";
+
+
+    if (filtered.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <h3>
+                    No challenges found
+                </h3>
+
+                <p>
+                    Try another search or category.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    filtered.forEach(challenge => {
+
+        const card =
+            document.createElement("article");
+
+        card.className =
+            "challenge-card";
+
+
+        const priorityClass =
+            challenge.priority === "High"
+            ? "priority-high"
+            : "priority-medium";
+
+
+        card.innerHTML = `
+
+            <div class="card-top">
+
+                <span class="category">
+                    ${challenge.category}
+                </span>
+
+                <span class="priority ${priorityClass}">
+                    ${challenge.priority} Priority
+                </span>
+
+            </div>
+
+
+            <h3 class="card-title">
+                ${escapeHTML(challenge.title)}
+            </h3>
+
+
+            <p class="card-description">
+                ${escapeHTML(challenge.desc)}
+            </p>
+
+
+            <div class="card-info">
+
+                <div class="info-item">
+
+                    <small>
+                        LOCATION
+                    </small>
+
+                    <strong>
+                        📍 ${escapeHTML(challenge.location)}
+                    </strong>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <small>
+                        COLLABORATORS
+                    </small>
+
+                    <strong>
+                        ${challenge.partners} Proposals
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="card-footer">
+
+                <div class="organization">
+
+                    Submitted by
+
+                    <strong>
+                        ${escapeHTML(challenge.org)}
+                    </strong>
+
+                </div>
+
+
+                <div class="card-buttons">
+
+                    <button
+                        class="btn btn-outline small-btn"
+                        onclick="viewDetails(${challenge.id})">
+
+                        View
+
+                    </button>
+
+
+                    <button
+                        class="btn btn-primary small-btn"
+                        onclick="openSolveModal(${challenge.id})">
+
+                        Collaborate
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+
+    document.getElementById(
+        "challenge-count"
+    ).textContent =
+        challenges.length;
+
+}
+
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+function filterCategory(category, button) {
+
+    currentFilter =
+        category;
+
+
+    document
+        .querySelectorAll(".filter-btn")
+        .forEach(btn => {
+
+            btn.classList.remove("active");
+
+        });
+
+
+    button.classList.add("active");
+
+
+    renderChallenges();
+
+}
+
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+function openModal(id) {
+
+    document
+        .getElementById(id)
+        .classList.add("show");
+
+}
+
+
+function closeModal(id) {
+
+    document
+        .getElementById(id)
+        .classList.remove("show");
+
+}
+
+
+
+/* =========================================================
+   POST CHALLENGE
+========================================================= */
+
+function handlePostChallenge(event) {
+
+    event.preventDefault();
+
+
+    const challenge = {
+
+        id:
+        Date.now(),
+
+        title:
+        document.getElementById("title").value,
+
+        category:
+        document.getElementById("category").value,
+
+        priority:
+        document.getElementById("priority").value,
+
+        org:
+        document.getElementById("org").value,
+
+        location:
+        document.getElementById("location").value,
+
+        desc:
+        document.getElementById("desc").value,
+
+        impact:
+        document.getElementById("impact").value ||
+        "Positive impact on the target community.",
+
+        partners:
+        0
+
+    };
+
+
+    challenges.unshift(challenge);
+
+
+    closeModal("postModal");
+
+
+    document
+        .getElementById("challengeForm")
+        .reset();
+
+
+    renderChallenges();
+
+
+    showToast(
+        "Challenge published successfully!"
+    );
+
+}
+
+
+
+/* =========================================================
+   VIEW DETAILS
+========================================================= */
+
+function viewDetails(id) {
+
+    selectedChallenge =
+        challenges.find(
+            challenge =>
+            challenge.id === id
+        );
+
+
+    if (!selectedChallenge) {
+        return;
+    }
+
+
+    document.getElementById(
+        "detailTitle"
+    ).textContent =
+        selectedChallenge.title;
+
+
+    document.getElementById(
+        "detailCategory"
+    ).textContent =
+        selectedChallenge.category;
+
+
+    document.getElementById(
+        "detailDescription"
+    ).textContent =
+        selectedChallenge.desc;
+
+
+    document.getElementById(
+        "detailOrg"
+    ).textContent =
+        selectedChallenge.org;
+
+
+    document.getElementById(
+        "detailLocation"
+    ).textContent =
+        selectedChallenge.location;
+
+
+    document.getElementById(
+        "detailImpact"
+    ).textContent =
+        selectedChallenge.impact;
+
+
+    document.getElementById(
+        "detailPartners"
+    ).textContent =
+        selectedChallenge.partners;
+
+
+    document.getElementById(
+        "detailPriority"
+    ).textContent =
+        selectedChallenge.priority;
+
+
+    openModal("detailsModal");
+
+}
+
+
+
+/* =========================================================
+   COLLABORATE
+========================================================= */
+
+function openSolveModal(id) {
+
+    selectedChallenge =
+        challenges.find(
+            challenge =>
+            challenge.id === id
+        );
+
+
+    if (!selectedChallenge) {
+        return;
+    }
+
+
+    openModal("solveModal");
+
+}
+
+
+function collaborateFromDetails() {
+
+    closeModal("detailsModal");
+
+
+    if (selectedChallenge) {
+
+        openSolveModal(
+            selectedChallenge.id
+        );
+
+    }
+
+}
+
+
+function handleSolveSubmit(event) {
+
+    event.preventDefault();
+
+
+    if (selectedChallenge) {
+
+        selectedChallenge.partners++;
+
+    }
+
+
+    closeModal("solveModal");
+
+
+    renderChallenges();
+
+
+    showToast(
+        "Collaboration request recorded!"
+    );
+
+}
+
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(message) {
+
+    const toast =
+        document.getElementById("toast");
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add("show");
+
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    }, 3000);
+
+}
+
+
+
+/* =========================================================
+   CLOSE MODAL OUTSIDE CLICK
+========================================================= */
+
+document
+.querySelectorAll(".modal-overlay")
+.forEach(modal => {
+
+    modal.addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target === modal
+            ) {
+
+                modal.classList.remove(
+                    "show"
+                );
+
+            }
+
+        }
+    );
+
+});
+
+
+
+/* =========================================================
+   ESC KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+            document
+            .querySelectorAll(
+                ".modal-overlay"
+            )
+            .forEach(modal => {
+
+                modal.classList.remove(
+                    "show"
+                );
+
+            });
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   BASIC HTML ESCAPING
+========================================================= */
+
+function escapeHTML(text) {
+
+    const element =
+        document.createElement("div");
+
+    element.textContent =
+        text;
+
+    return element.innerHTML;
+
+}
+
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+renderChallenges();
+
+</script>
+
+</body>
+</html>
+```

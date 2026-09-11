@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ImpactBridge | University-Industry Collaboration Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #0f172a;
+      --accent: #10b981;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #334155;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    header {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-block;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+      font-size: 0.9rem;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-outline {
+      border-color: var(--border);
+      color: var(--secondary);
+      background: white;
+    }
+
+    .btn-outline:hover {
+      background: var(--bg);
+    }
+
+    /* Hero */
+    .hero {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: #dbeafe;
+      color: var(--primary);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-size: 2.75rem;
+      color: var(--secondary);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    /* Stats Banner */
+    .stats {
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .stats-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--secondary);
+    }
+
+    /* Filters */
+    .filter-group {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* Grid of Challenges */
+    .challenge-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .challenge-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .challenge-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.08);
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .card-tag {
+      background: #f1f5f9;
+      color: var(--text);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .card-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    .partner-info {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Modal Form */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+      padding: 1rem;
+    }
+
+    .modal {
+      background: white;
+      border-radius: 8px;
+      max-width: 550px;
+      width: 100%;
+      padding: 2rem;
+      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 500;
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      height: 90px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      background: white;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="navbar">
+      <a href="#" class="logo">Impact<span>Bridge</span></a>
+      <ul class="nav-links">
+        <li><a href="#challenges">Browse Challenges</a></li>
+        <li><a href="#about">How It Works</a></li>
+        <li><button class="btn btn-primary" onclick="openModal()">Post a Challenge</button></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <span class="badge">Crowdsourced Innovation</span>
+    <h1>Connect Societal Needs With<br>Academic & Industry Innovation</h1>
+    <p>A digital platform linking communities, universities, and industry leaders to fund, research, and deploy real-world solutions.</p>
+    <div class="hero-actions">
+      <a href="#challenges" class="btn btn-primary">Explore Problems</a>
+      <button class="btn btn-outline" onclick="openModal()">Submit Problem Statement</button>
+    </div>
+  </section>
+
+  <!-- Statistics Banner -->
+  <section class="stats">
+    <div class="stats-container">
+      <div>
+        <div class="stat-number" id="challenge-count">142</div>
+        <div class="stat-label">Societal Challenges Logged</div>
+      </div>
+      <div>
+        <div class="stat-number">48</div>
+        <div class="stat-label">University Research Labs</div>
+      </div>
+      <div>
+        <div class="stat-number">35</div>
+        <div class="stat-label">Industry Sponsors</div>
+      </div>
+      <div>
+        <div class="stat-number">$1.2M</div>
+        <div class="stat-label">Collaborative R&D Funded</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Platform Content -->
+  <main class="container" id="challenges">
+    <div class="section-header">
+      <h2 class="section-title">Active Challenges</h2>
+      <div class="filter-group">
+        <button class="filter-btn active" onclick="filterCategory('All')">All</button>
+        <button class="filter-btn" onclick="filterCategory('Clean Energy')">Clean Energy</button>
+        <button class="filter-btn" onclick="filterCategory('Healthcare')">Healthcare</button>
+        <button class="filter-btn" onclick="filterCategory('AgriTech')">AgriTech</button>
+        <button class="filter-btn" onclick="filterCategory('Urban Planning')">Urban Planning</button>
+      </div>
+    </div>
+
+    <div class="challenge-grid" id="challenge-list">
+      <!-- Dynamic Challenge Cards will render here -->
+    </div>
+  </main>
+
+  <!-- Post Challenge Modal -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 style="color: var(--secondary)">Post a Societal Challenge</h3>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <form id="challenge-form" onsubmit="handlePostChallenge(event)">
+        <div class="form-group">
+          <label>Problem Title</label>
+          <input type="text" id="title" required placeholder="e.g., Low-cost water purification for rural areas">
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <select id="category">
+            <option value="Clean Energy">Clean Energy</option>
+            <option value="Healthcare">Healthcare</option>
+            <option value="AgriTech">AgriTech</option>
+            <option value="Urban Planning">Urban Planning</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Organization / Submitter Name</label>
+          <input type="text" id="org" required placeholder="e.g., Rural Development NGO or Civic Council">
+        </div>
+        <div class="form-group">
+          <label>Description & Requirements</label>
+          <textarea id="desc" required placeholder="Outline the societal impact, target beneficiaries, and required technical support..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit to Network</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Solution Modal -->
+  <div class="modal-overlay" id="solve-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 style="color: var(--secondary)">Partner or Propose Solution</h3>
+        <button class="modal-close" onclick="closeSolveModal()">&times;</button>
+      </div>
+      <form onsubmit="handleSolveSubmit(event)">
+        <div class="form-group">
+          <label>Institution Type</label>
+          <select required>
+            <option value="university">University / Research Lab</option>
+            <option value="industry">Industry Partner / Corporate R&D</option>
+            <option value="student">Student Innovation Team</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Institution Name</label>
+          <input type="text" required placeholder="e.g., National Institute of Technology">
+        </div>
+        <div class="form-group">
+          <label>Proposal Summary / Grant Offer</label>
+          <textarea required placeholder="Summarize your technical capability, proposed timeline, or matching grant capability..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Express Interest</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>ImpactBridge &copy; 2026. Crowdsourced Societal Innovation & Academia-Industry Collaboration Platform.</p>
+  </footer>
+
+  <script>
+    // Initial sample dataset
+    const challenges = [
+      {
+        id: 1,
+        title: "Cold-Chain Monitoring for Rural Vaccine Distribution",
+        category: "Healthcare",
+        desc: "Need low-cost, battery-free temperature loggers to ensure measles and polio vaccines don't degrade during the final 50 miles of transport.",
+        org: "Public Health Collective",
+        partners: 2
+      },
+      {
+        id: 2,
+        title: "Paddy Straw Bio-Degradation to Mitigate Stubble Burning",
+        category: "Clean Energy",
+        desc: "Seeking fast-acting microbial sprays or compact mechanical shredders capable of decomposing post-harvest residue within 10 days.",
+        org: "North Farmers Alliance",
+        partners: 4
+      },
+      {
+        id: 3,
+        title: "Solar-Powered Groundwater Arsenic Filtration",
+        category: "Clean Energy",
+        desc: "Targeting decentralized adsorption systems that operate completely off-grid with maintenance cycles exceeding 6 months.",
+        org: "Clean Water Initiative",
+        partners: 1
+      },
+      {
+        id: 4,
+        title: "AI Optimization for Municipal Micro-Transit Routing",
+        category: "Urban Planning",
+        desc: "Developing algorithmic route adaptation for shared electric auto-rickshaws to reduce wait times in low-income periphery towns.",
+        org: "City Transit Department",
+        partners: 3
+      },
+      {
+        id: 5,
+        title: "Early Detection of Citrus Greening via Drone Imaging",
+        category: "AgriTech",
+        desc: "Looking for multi-spectral drone analysis algorithms to diagnose bacterial disease in smallholder citrus groves before symptoms manifest.",
+        org: "Horticulture Board",
+        partners: 2
+      }
+    ];
+
+    let currentFilter = 'All';
+
+    function renderChallenges() {
+      const container = document.getElementById('challenge-list');
+      container.innerHTML = '';
+
+      const filtered = currentFilter === 'All' 
+        ? challenges 
+        : challenges.filter(c => c.category === currentFilter);
+
+      filtered.forEach(c => {
+        const card = document.createElement('div');
+        card.className = 'challenge-card';
+        card.innerHTML = `
+          <div>
+            <div class="card-meta">
+              <span class="card-tag">${c.category}</span>
+              <span>By ${c.org}</span>
+            </div>
+            <h3 class="card-title">${c.title}</h3>
+            <p class="card-desc">${c.desc}</p>
+          </div>
+          <div class="card-footer">
+            <span class="partner-info"><strong>${c.partners}</strong> Proposals Logged</span>
+            <button class="btn btn-outline" style="font-size: 0.8rem; padding: 0.35rem 0.75rem;" onclick="openSolveModal()">Collaborate</button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      document.getElementById('challenge-count').textContent = challenges.length;
+    }
+
+    function filterCategory(cat) {
+      currentFilter = cat;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent === cat);
+      });
+      renderChallenges();
+    }
+
+    // Modal Operations
+    function openModal() { document.getElementById('modal').style.display = 'flex'; }
+    function closeModal() { document.getElementById('modal').style.display = 'none'; }
+    function openSolveModal() { document.getElementById('solve-modal').style.display = 'flex'; }
+    function closeSolveModal() { document.getElementById('solve-modal').style.display = 'none'; }
+
+    function handlePostChallenge(e) {
+      e.preventDefault();
+      const newChallenge = {
+        id: challenges.length + 1,
+        title: document.getElementById('title').value,
+        category: document.getElementById('category').value,
+        desc: document.getElementById('desc').value,
+        org: document.getElementById('org').value,
+        partners: 0
+      };
+      challenges.unshift(newChallenge);
+      renderChallenges();
+      closeModal();
+      document.getElementById('challenge-form').reset();
+    }
+
+    function handleSolveSubmit(e) {
+      e.preventDefault();
+      alert('Partnership expression recorded! In production, this notifies the problem submitter.');
+      closeSolveModal();
+    }
+
+    // Initial load
+    renderChallenges();
+  </script>
+</body>
+</html>

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ImpactBridge | University-Industry Collaboration Platform</title>
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement">
+    <div class="announcement-content">
+      <span class="announcement-badge"><i class="fa-solid fa-sparkles"></i> 2026 R&D Cycle</span>
+      <span>Matching Grants Open for Clean Energy & Rural Healthcare Initiatives.</span>
+      <a href="#challenges" class="announcement-link">Explore Open RFPs &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header>
+    <div class="navbar">
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <i class="fa-solid fa-bridge-water"></i>
+        </div>
+        <span>Impact<strong>Bridge</strong></span>
+      </a>
+
+      <nav class="nav-menu">
+        <ul class="nav-links">
+          <li><a href="#challenges" class="nav-link active">Browse Challenges</a></li>
+          <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+          <li><a href="#stats" class="nav-link">Impact Metrics</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-outline" id="saved-filter-toggle" onclick="toggleSavedFilter()" title="View Bookmarked Challenges">
+          <i class="fa-regular fa-bookmark"></i>
+          <span class="saved-count-badge" id="saved-count">0</span>
+        </button>
+        <button class="btn btn-primary" onclick="openPostModal()">
+          <i class="fa-solid fa-plus"></i>
+          <span>Post Challenge</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fa-solid fa-earth-americas"></i>
+        <span>Crowdsourced Societal Innovation</span>
+      </div>
+      <h1>Connect Societal Needs with <span class="gradient-text">Academic Labs & Industry Capital</span></h1>
+      <p class="hero-subtext">
+        Bridging the gap between grassroots community challenges, university research capabilities, and corporate R&D funding to incubate deployable real-world solutions.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#challenges" class="btn btn-primary btn-lg">
+          <i class="fa-solid fa-compass"></i> Explore Challenges
+        </a>
+        <button class="btn btn-outline btn-lg" onclick="openPostModal()">
+          <i class="fa-solid fa-paper-plane"></i> Submit Problem Statement
+        </button>
+        <a href="#how-it-works" class="btn btn-ghost btn-lg">
+          <i class="fa-solid fa-circle-play"></i> Watch Walkthrough
+        </a>
+      </div>
+
+      <!-- Quick Search in Hero -->
+      <div class="hero-search-wrapper">
+        <div class="hero-search-box">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="hero-search-input" placeholder="Search by topic (e.g. arsenic filtration, solar cold-chain, crop blight)..." oninput="syncAndSearch(this.value)">
+          <button class="btn btn-primary btn-sm" onclick="scrollToChallenges()">Search</button>
+        </div>
+        <div class="quick-tags">
+          <span class="quick-tag-label">Trending Topics:</span>
+          <button class="tag-pill" onclick="quickFilter('Clean Energy')">#CleanEnergy</button>
+          <button class="tag-pill" onclick="quickFilter('Healthcare')">#Healthcare</button>
+          <button class="tag-pill" onclick="quickFilter('AgriTech')">#AgriTech</button>
+          <button class="tag-pill" onclick="quickFilter('Water & Sanitation')">#Water</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Banner -->
+  <section class="stats" id="stats">
+    <div class="stats-container">
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fa-solid fa-bullseye"></i></div>
+        <div class="stat-number" id="stat-challenges">0</div>
+        <div class="stat-label">Societal Challenges Logged</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fa-solid fa-flask-vial"></i></div>
+        <div class="stat-number" id="stat-proposals">0</div>
+        <div class="stat-label">Active Collaborative Proposals</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fa-solid fa-building-columns"></i></div>
+        <div class="stat-number" id="stat-labs">54</div>
+        <div class="stat-label">Partner University Labs</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+        <div class="stat-number" id="stat-funding">$1.85M</div>
+        <div class="stat-label">Collaborative R&D Seeded</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="section-title-wrap text-center">
+      <span class="sub-heading">Three-Pillar Ecosystem</span>
+      <h2 class="section-title">How ImpactBridge Works</h2>
+      <p class="section-desc">We convert grassroot friction into funded innovation through structured multi-stakeholder collaboration.</p>
+    </div>
+
+    <div class="workflow-steps">
+      <div class="step-card">
+        <div class="step-number">01</div>
+        <div class="step-icon step-blue"><i class="fa-solid fa-users-viewfinder"></i></div>
+        <h3>Communities Post Challenges</h3>
+        <p>NGOs, municipal agencies, and rural communities define unmet real-world challenges with verified ground data and impact metrics.</p>
+        <span class="step-role">Civic & Community</span>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">02</div>
+        <div class="step-icon step-purple"><i class="fa-solid fa-microscope"></i></div>
+        <h3>Universities Propose Solutions</h3>
+        <p>Faculty researchers, PhD candidates, and student engineering teams formulate targeted hypotheses, prototypes, and research proposals.</p>
+        <span class="step-role">Academia & Labs</span>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">03</div>
+        <div class="step-icon step-emerald"><i class="fa-solid fa-handshake-angle"></i></div>
+        <h3>Industry Sponsors & Co-Develop</h3>
+        <p>Corporate R&D partners provide matching grants, testing equipment, and industrial scalability to commercialize and deploy solutions.</p>
+        <span class="step-role">Industry & Philanthropy</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Platform Content -->
+  <main class="container" id="challenges">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">Active Problem Statements</h2>
+        <p class="section-desc">Discover societal bottlenecks currently seeking academic research or industry sponsorship.</p>
+      </div>
+      <div class="results-meta">
+        Showing <span id="results-count">0</span> challenges
+      </div>
+    </div>
+
+    <!-- Filter & Search Toolbar -->
+    <div class="filter-toolbar">
+      <!-- Search Input -->
+      <div class="search-field">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="filter-search" placeholder="Search challenges by title, keyword, or organization..." oninput="handleSearchChange(this.value)">
+        <button id="search-clear-btn" class="clear-btn" onclick="clearSearch()" title="Clear search"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- Filters & Sorting Row -->
+      <div class="toolbar-controls">
+        <!-- Category Pills -->
+        <div class="category-pills" id="category-pills">
+          <button class="filter-pill active" onclick="setCategory('All')">All Categories</button>
+          <button class="filter-pill" onclick="setCategory('Clean Energy')">Clean Energy</button>
+          <button class="filter-pill" onclick="setCategory('Healthcare')">Healthcare</button>
+          <button class="filter-pill" onclick="setCategory('AgriTech')">AgriTech</button>
+          <button class="filter-pill" onclick="setCategory('Urban Planning')">Urban Planning</button>
+          <button class="filter-pill" onclick="setCategory('Water & Sanitation')">Water & Sanitation</button>
+        </div>
+
+        <!-- Dropdowns -->
+        <div class="dropdown-group">
+          <div class="select-wrapper">
+            <label for="status-select"><i class="fa-solid fa-traffic-light"></i></label>
+            <select id="status-select" onchange="handleStatusChange(this.value)">
+              <option value="All">All Statuses</option>
+              <option value="Open for Proposals">🟢 Open for Proposals</option>
+              <option value="Under Review">🟡 Under Review</option>
+              <option value="Funded & Active">🔵 Funded & Active</option>
+              <option value="Solved">🟣 Solved / Deployed</option>
+            </select>
+          </div>
+
+          <div class="select-wrapper">
+            <label for="sort-select"><i class="fa-solid fa-arrow-down-wide-short"></i></label>
+            <select id="sort-select" onchange="handleSortChange(this.value)">
+              <option value="newest">Sort: Newest First</option>
+              <option value="proposals">Sort: Most Proposals</option>
+              <option value="funding-high">Sort: Funding Goal (High to Low)</option>
+              <option value="funding-low">Sort: Funding Goal (Low to High)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Filters Summary Tag Bar -->
+    <div class="active-filters-bar" id="active-filters-bar" style="display: none;">
+      <span class="active-filter-label">Active Filters:</span>
+      <div id="filter-chips" class="filter-chips"></div>
+      <button class="btn-text-reset" onclick="resetAllFilters()">Reset All</button>
+    </div>
+
+    <!-- Challenge Cards Grid -->
+    <div class="challenge-grid" id="challenge-list">
+      <!-- Dynamic Challenge Cards will render here -->
+    </div>
+
+    <!-- Empty State Placeholder -->
+    <div class="empty-state" id="empty-state" style="display: none;">
+      <div class="empty-icon"><i class="fa-solid fa-folder-open"></i></div>
+      <h3>No matching challenges found</h3>
+      <p>Try adjusting your search keywords, category, or status filters.</p>
+      <button class="btn btn-primary btn-sm" onclick="resetAllFilters()">Reset All Filters</button>
+    </div>
+  </main>
+
+  <!-- Post Challenge Modal -->
+  <div class="modal-overlay" id="post-modal" onclick="handleBackdropClick(event, 'post-modal')">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <div class="modal-badge"><i class="fa-solid fa-plus-circle"></i> New Problem Statement</div>
+          <h3>Submit a Societal Challenge</h3>
+          <p class="modal-subtitle">Detail your community's need so universities and industry partners can review technical feasibility and propose solutions.</p>
+        </div>
+        <button class="modal-close" onclick="closeModal('post-modal')" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="challenge-form" onsubmit="handlePostChallenge(event)">
+        <div class="form-row">
+          <div class="form-group flex-2">
+            <label for="title">Problem Statement Title <span class="required">*</span></label>
+            <input type="text" id="title" required placeholder="e.g., Solar-Powered Cold Chain Monitoring for Smallholder Farms">
+          </div>
+          <div class="form-group flex-1">
+            <label for="category">Category <span class="required">*</span></label>
+            <select id="category" required>
+              <option value="Clean Energy">Clean Energy</option>
+              <option value="Healthcare">Healthcare</option>
+              <option value="AgriTech">AgriTech</option>
+              <option value="Urban Planning">Urban Planning</option>
+              <option value="Water & Sanitation">Water & Sanitation</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label for="org">Organization / Submitter Name <span class="required">*</span></label>
+            <input type="text" id="org" required placeholder="e.g., Rural Health Alliance or Municipal Council">
+          </div>
+          <div class="form-group flex-1">
+            <label for="funding">Target R&D / Grant Budget ($ USD)</label>
+            <input type="number" id="funding" placeholder="e.g., 25000" min="0" step="500">
+          </div>
+          <div class="form-group flex-1">
+            <label for="timeline">Target Timeline</label>
+            <select id="timeline">
+              <option value="3-6 Months">3 - 6 Months (Fast Track)</option>
+              <option value="6-12 Months" selected>6 - 12 Months (Standard)</option>
+              <option value="12-24 Months">12 - 24 Months (Multi-stage R&D)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="tags">Key Technical Domains & Skills (Comma separated)</label>
+          <input type="text" id="tags" placeholder="e.g., IoT Sensors, Battery Chemistries, Python, Embedded Firmware">
+        </div>
+
+        <div class="form-group">
+          <label for="desc">Comprehensive Problem Description & Field Context <span class="required">*</span></label>
+          <textarea id="desc" required placeholder="Describe the ground problem, affected beneficiaries, current failed workarounds, and technical parameters required for success..."></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('post-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-cloud-arrow-up"></i> Publish to Network
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Challenge Detail Modal -->
+  <div class="modal-overlay" id="detail-modal" onclick="handleBackdropClick(event, 'detail-modal')">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <div class="detail-header-tags">
+          <span class="card-tag" id="detail-category">Category</span>
+          <span class="status-badge" id="detail-status">Status</span>
+        </div>
+        <div class="modal-header-actions">
+          <button class="bookmark-btn" id="detail-bookmark-btn" onclick="handleDetailBookmarkToggle()" title="Bookmark Challenge">
+            <i class="fa-regular fa-bookmark"></i>
+          </button>
+          <button class="modal-close" onclick="closeModal('detail-modal')" aria-label="Close modal">&times;</button>
+        </div>
+      </div>
+
+      <div class="detail-content">
+        <h2 class="detail-title" id="detail-title">Problem Statement Title</h2>
+        <div class="detail-meta">
+          <span><i class="fa-solid fa-building-user"></i> Submitted by: <strong id="detail-org">Organization</strong></span>
+          <span><i class="fa-regular fa-calendar"></i> Posted: <span id="detail-date">Recently</span></span>
+        </div>
+
+        <div class="detail-stats-grid">
+          <div class="detail-stat-box">
+            <span class="d-label">Target Grant / Budget</span>
+            <span class="d-value" id="detail-funding">$0</span>
+          </div>
+          <div class="detail-stat-box">
+            <span class="d-label">Desired Timeline</span>
+            <span class="d-value" id="detail-timeline">6-12 Months</span>
+          </div>
+          <div class="detail-stat-box">
+            <span class="d-label">Proposals Received</span>
+            <span class="d-value" id="detail-proposals-count">0</span>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <h4>Problem Overview & Ground Reality</h4>
+          <p id="detail-desc" class="detail-body-text"></p>
+        </div>
+
+        <div class="detail-section">
+          <h4>Required Expertise & Domains</h4>
+          <div class="tag-list" id="detail-tags"></div>
+        </div>
+
+        <hr class="detail-divider">
+
+        <!-- Proposals / Collaborations Section -->
+        <div class="detail-section">
+          <div class="proposals-header">
+            <h4>Collaborative Proposals Logged (<span id="detail-proposal-badge">0</span>)</h4>
+            <button class="btn btn-primary btn-sm" onclick="openProposeFromDetail()">
+              <i class="fa-solid fa-handshake"></i> Submit Proposal
+            </button>
+          </div>
+
+          <div class="proposals-list" id="detail-proposals-list">
+            <!-- Dynamic list of proposals -->
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" onclick="closeModal('detail-modal')">Close</button>
+        <button type="button" class="btn btn-primary" onclick="openProposeFromDetail()">
+          <i class="fa-solid fa-paper-plane"></i> Propose Solution / Partner
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Solution / Collaboration Proposal Modal -->
+  <div class="modal-overlay" id="solve-modal" onclick="handleBackdropClick(event, 'solve-modal')">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <div class="modal-badge"><i class="fa-solid fa-handshake"></i> Partner Application</div>
+          <h3>Propose Solution or Co-Sponsorship</h3>
+          <p class="modal-subtitle" id="solve-target-title">For Challenge: ...</p>
+        </div>
+        <button class="modal-close" onclick="closeModal('solve-modal')" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="propose-form" onsubmit="handleSolveSubmit(event)">
+        <input type="hidden" id="solve-challenge-id">
+
+        <div class="form-group">
+          <label for="solve-type">Institution / Organization Type <span class="required">*</span></label>
+          <select id="solve-type" required>
+            <option value="University Research Lab">University Research Lab</option>
+            <option value="Industry R&D / Corporate Sponsor">Industry R&D / Corporate Sponsor</option>
+            <option value="Student Innovation Team">Student Innovation Team</option>
+            <option value="Independent Research Foundation">Independent Research Foundation</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label for="solve-name">Institution / Department Name <span class="required">*</span></label>
+            <input type="text" id="solve-name" required placeholder="e.g., Center for Clean Energy, MIT or Siemens R&D">
+          </div>
+          <div class="form-group flex-1">
+            <label for="solve-lead">Lead Contact / PI <span class="required">*</span></label>
+            <input type="text" id="solve-lead" required placeholder="e.g., Dr. Aris Thorne (aris@lab.edu)">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label for="solve-grant">Grant Contribution / Matching Fund ($)</label>
+            <input type="number" id="solve-grant" placeholder="e.g. 15000 (optional)" min="0">
+          </div>
+          <div class="form-group flex-1">
+            <label for="solve-est-time">Estimated Prototype Phase</label>
+            <select id="solve-est-time">
+              <option value="3-4 Months">3 - 4 Months</option>
+              <option value="6 Months" selected>6 Months</option>
+              <option value="9-12 Months">9 - 12 Months</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="solve-summary">Technical Solution Proposal & Capability Summary <span class="required">*</span></label>
+          <textarea id="solve-summary" required placeholder="Detail your technical methodology, relevant lab equipment/patents, and how your team will address the community requirements..."></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('solve-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-check"></i> Submit Proposal
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon"><i class="fa-solid fa-bridge-water"></i></div>
+          <span>Impact<strong>Bridge</strong></span>
+        </div>
+        <p class="footer-tagline">
+          Empowering cross-sector collaboration to solve humanity's most pressing environmental, health, and urban challenges.
+        </p>
+      </div>
+
+      <div class="footer-nav">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#challenges">Browse Challenges</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#stats">Ecosystem Metrics</a></li>
+          <li><button class="footer-link-btn" onclick="openPostModal()">Post a Problem Statement</button></li>
+        </ul>
+      </div>
+
+      <div class="footer-nav">
+        <h4>Resources & Data</h4>
+        <ul>
+          <li><a href="javascript:void(0)" onclick="resetToDemoData()"><i class="fa-solid fa-rotate-left"></i> Reset Demo Dataset</a></li>
+          <li><a href="https://github.com" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Open API Spec</a></li>
+          <li><a href="#how-it-works"><i class="fa-solid fa-book"></i> R&D Matching Guidelines</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>ImpactBridge &copy; 2026. Crowdsourced Societal Innovation & Academia-Industry Collaboration Platform.</p>
+      <div class="footer-badges">
+        <span><i class="fa-solid fa-shield-halved"></i> Verified Academic Labs</span>
+        <span><i class="fa-solid fa-check-double"></i> Open Access R&D</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript File -->
+  <script src="app.js"></script>
+</body>
+</html>
